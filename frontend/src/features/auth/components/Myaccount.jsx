@@ -17,8 +17,7 @@ export const Myaccount = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // --- CONFIGURACIÓN DE URL ---
-  // Detecta automáticamente si estás en producción o local
+  // --- CONFIGURACIÓN DE URL DINÁMICA ---
   const API_URL = window.location.hostname === "localhost" 
     ? "http://localhost:3001" 
     : "https://taller-4-cc82.onrender.com";
@@ -33,7 +32,6 @@ export const Myaccount = () => {
     if (!formularioValido) return;
 
     try {
-      // ✅ URL CORREGIDA PARA RENDER
       const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,23 +46,33 @@ export const Myaccount = () => {
         localStorage.setItem("user", JSON.stringify(data.usuario || data));
         window.dispatchEvent(new Event("storage"));
 
-        // Redirección para HashRouter o BrowserRouter
+        // Redirección absoluta para evitar problemas de rutas
         navigate("/Article", { replace: true }); 
         
       } else {
-        alert(data.mensaje || "Error en el login");
+        // Mostramos el mensaje exacto que viene del backend
+        alert(data.mensaje || "Credenciales incorrectas");
       }
     } catch (error) {
       console.error("ERROR LOGIN:", error);
-      alert("Error al conectar con el servidor. Verifica tu conexión.");
+      alert("Error de conexión. El servidor de Render puede estar despertando, intenta de nuevo en 20 segundos.");
     }
   };
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" height="100vh" sx={{ background: "linear-gradient(135deg,#0d0d0d,#1a1a1a)" }}>
-      <Card sx={{ width: 380, p: 2, borderRadius: 3, backgroundColor: "#111", color: "#fff", boxShadow: "0 0 25px rgba(255,46,46,0.3)" }}>
+      <Card sx={{ 
+        width: 380, 
+        p: 2, 
+        borderRadius: 3, 
+        backgroundColor: "#111", 
+        color: "#fff", 
+        boxShadow: "0 0 25px rgba(255,46,46,0.3)" 
+      }}>
         <CardContent>
-          <Box display="flex" justifyContent="center" mb={1}><CheckroomIcon sx={{ fontSize: 40, color: "#ff2e2e" }} /></Box>
+          <Box display="flex" justifyContent="center" mb={1}>
+            <CheckroomIcon sx={{ fontSize: 40, color: "#ff2e2e" }} />
+          </Box>
           <Typography variant="h5" textAlign="center" fontWeight="bold">Gorras Store</Typography>
           <Typography variant="body2" textAlign="center" mb={3} color="gray">Inicia sesión para comprar</Typography>
 
@@ -72,13 +80,20 @@ export const Myaccount = () => {
             <TextField
               fullWidth label="Correo" margin="normal" value={email}
               onChange={(e) => setEmail(e.target.value)}
-              InputProps={{ startAdornment: (<InputAdornment position="start"><EmailIcon sx={{ color: "#ff2e2e" }} /></InputAdornment>) }}
+              InputProps={{ 
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon sx={{ color: "#ff2e2e" }} />
+                  </InputAdornment>
+                ) 
+              }}
               sx={{ 
                 input: { color: "#fff" }, 
                 label: { color: "#aaa" },
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": { borderColor: "#333" },
                   "&:hover fieldset": { borderColor: "#ff2e2e" },
+                  "&.Mui-focused fieldset": { borderColor: "#ff2e2e" }
                 }
               }}
             />
@@ -86,7 +101,11 @@ export const Myaccount = () => {
               fullWidth label="Contraseña" type={showPassword ? "text" : "password"} margin="normal" value={password}
               onChange={(e) => setPassword(e.target.value)}
               InputProps={{
-                startAdornment: (<InputAdornment position="start"><LockIcon sx={{ color: "#ff2e2e" }} /></InputAdornment>),
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon sx={{ color: "#ff2e2e" }} />
+                  </InputAdornment>
+                ),
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton onClick={() => setShowPassword(!showPassword)} sx={{ color: "#fff" }}>
@@ -101,14 +120,33 @@ export const Myaccount = () => {
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": { borderColor: "#333" },
                   "&:hover fieldset": { borderColor: "#ff2e2e" },
+                  "&.Mui-focused fieldset": { borderColor: "#ff2e2e" }
                 }
               }}
             />
-            <Button type="submit" variant="contained" fullWidth disabled={!formularioValido} sx={{ mt: 2, bgcolor: "#ff2e2e", fontWeight: "bold", "&:hover": { bgcolor: "#cc0000" } }}>
+            <Button 
+              type="submit" 
+              variant="contained" 
+              fullWidth 
+              disabled={!formularioValido} 
+              sx={{ 
+                mt: 2, 
+                bgcolor: "#ff2e2e", 
+                fontWeight: "bold", 
+                "&:hover": { bgcolor: "#cc0000" },
+                "&.Mui-disabled": { bgcolor: "#551a1a", color: "#888" } 
+              }}
+            >
               Acceder
             </Button>
             <Typography textAlign="center" mt={2} fontSize="0.9rem">
-              ¿No tienes cuenta? <span style={{ color: "#ff2e2e", cursor: "pointer" }} onClick={() => navigate("/Register")}>Regístrate</span>
+              ¿No tienes cuenta?{" "}
+              <span 
+                style={{ color: "#ff2e2e", cursor: "pointer", fontWeight: "bold" }} 
+                onClick={() => navigate("/Register")}
+              >
+                Regístrate
+              </span>
             </Typography>
           </Box>
         </CardContent>

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Card,
-  CardContent,
-  TextField,
-  Button,
-  Typography,
-  InputAdornment,
-  IconButton
+  Box, Card, CardContent, TextField, Button, Typography,
+  InputAdornment, IconButton
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +19,12 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  // --- SOLUCIÓN AL ERROR DE CONEXIÓN ---
+  // Si estás en tu PC usa localhost, si estás en la nube usa Render
+  const API_URL = window.location.hostname === "localhost" 
+    ? "http://localhost:3001" 
+    : "https://taller-4-cc82.onrender.com";
 
   const validarEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,7 +49,8 @@ export const Register = () => {
     if (!formularioValido) return;
 
     try {
-      const res = await fetch("http://localhost:3001/api/auth/register", {
+      // ✅ Se cambió "http://localhost:3001" por la variable dinámica API_URL
+      const res = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -59,15 +60,16 @@ export const Register = () => {
 
       const data = await res.json();
 
-      alert(data.mensaje);
-
       if (res.ok) {
+        alert(data.mensaje || "¡Registro exitoso! Ya puedes iniciar sesión.");
         navigate("/login");
+      } else {
+        alert(data.mensaje || "Error al registrar");
       }
 
     } catch (error) {
-      console.error(error);
-      alert("Error al registrar");
+      console.error("DETALLE DEL ERROR:", error);
+      alert("No se pudo conectar con el servidor. Verifica tu conexión a internet.");
     }
   };
 
@@ -77,7 +79,8 @@ export const Register = () => {
     >
       <Card sx={{
         width: 380, p: 2, borderRadius: 3,
-        backgroundColor: "#111", color: "#fff"
+        backgroundColor: "#111", color: "#fff",
+        boxShadow: "0 0 25px rgba(255,46,46,0.3)" // Mantenemos tu estilo exacto
       }}>
         <CardContent>
 
@@ -102,7 +105,14 @@ export const Register = () => {
                   </InputAdornment>
                 )
               }}
-              sx={{ input: { color: "#fff" }, label: { color: "#aaa" } }}
+              sx={{ 
+                input: { color: "#fff" }, 
+                label: { color: "#aaa" },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "#333" },
+                  "&:hover fieldset": { borderColor: "#ff2e2e" },
+                }
+              }}
             />
 
             <TextField
@@ -118,7 +128,14 @@ export const Register = () => {
                   </InputAdornment>
                 )
               }}
-              sx={{ input: { color: "#fff" }, label: { color: "#aaa" } }}
+              sx={{ 
+                input: { color: "#fff" }, 
+                label: { color: "#aaa" },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "#333" },
+                  "&:hover fieldset": { borderColor: "#ff2e2e" },
+                }
+              }}
             />
 
             <TextField
@@ -136,23 +153,35 @@ export const Register = () => {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)}>
+                    <IconButton onClick={() => setShowPassword(!showPassword)} sx={{ color: "#fff" }}>
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 )
               }}
-              sx={{ input: { color: "#fff" }, label: { color: "#aaa" } }}
+              sx={{ 
+                input: { color: "#fff" }, 
+                label: { color: "#aaa" },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "#333" },
+                  "&:hover fieldset": { borderColor: "#ff2e2e" },
+                }
+              }}
             />
 
             <Button type="submit" fullWidth variant="contained"
               disabled={!formularioValido}
-              sx={{ mt: 2, bgcolor: "#ff2e2e" }}
+              sx={{ 
+                mt: 2, 
+                bgcolor: "#ff2e2e", 
+                fontWeight: "bold",
+                "&:hover": { bgcolor: "#cc0000" } 
+              }}
             >
               Registrarse
             </Button>
 
-            <Typography textAlign="center" mt={2}>
+            <Typography textAlign="center" mt={2} fontSize="0.9rem">
               ¿Ya tienes cuenta?{" "}
               <span
                 style={{ color: "#ff2e2e", cursor: "pointer" }}

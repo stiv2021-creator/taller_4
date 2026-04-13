@@ -17,6 +17,12 @@ export const Myaccount = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  // --- CONFIGURACIÓN DE URL ---
+  // Detecta automáticamente si estás en producción o local
+  const API_URL = window.location.hostname === "localhost" 
+    ? "http://localhost:3001" 
+    : "https://taller-4-cc82.onrender.com";
+
   const validarEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   const validarPassword = (p) => /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(p);
 
@@ -27,7 +33,8 @@ export const Myaccount = () => {
     if (!formularioValido) return;
 
     try {
-      const res = await fetch("http://localhost:3001/api/auth/login", {
+      // ✅ URL CORREGIDA PARA RENDER
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -38,22 +45,18 @@ export const Myaccount = () => {
       if (res.ok) {
         alert("Inicio de sesión exitoso 🔥");
         
-        // 1. Guardamos el usuario
         localStorage.setItem("user", JSON.stringify(data.usuario || data));
-
-        // 2. Avisamos al Header del cambio de sesión
         window.dispatchEvent(new Event("storage"));
 
-        // 3. ✅ REDIRECCIÓN CORREGIDA PARA HASHROUTER
-        // Usamos ruta relativa sin el "/" al inicio para que se mantenga tras el #
-        navigate("../Article", { replace: true }); 
+        // Redirección para HashRouter o BrowserRouter
+        navigate("/Article", { replace: true }); 
         
       } else {
         alert(data.mensaje || "Error en el login");
       }
     } catch (error) {
       console.error("ERROR LOGIN:", error);
-      alert("Error al conectar con el servidor.");
+      alert("Error al conectar con el servidor. Verifica tu conexión.");
     }
   };
 
@@ -105,14 +108,13 @@ export const Myaccount = () => {
               Acceder
             </Button>
             <Typography textAlign="center" mt={2} fontSize="0.9rem">
-              ¿No tienes cuenta? <span style={{ color: "#ff2e2e", cursor: "pointer" }} onClick={() => navigate("../Register")}>Regístrate</span>
+              ¿No tienes cuenta? <span style={{ color: "#ff2e2e", cursor: "pointer" }} onClick={() => navigate("/Register")}>Regístrate</span>
             </Typography>
           </Box>
         </CardContent>
       </Card>
     </Box>
   );
-  
 };
 
 export default Myaccount;

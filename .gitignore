@@ -1,0 +1,23 @@
+# Dependencias (Cubre raíz, backend y frontend)
+node_modules/
+**/node_modules/
+
+# Variables de entorno (¡Muy importante para seguridad!)
+.env
+backend/.env
+frontend/.env
+
+# Archivos de compilación y dist
+dist/
+frontend/dist/
+dist-ssr/
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+.DS_Store

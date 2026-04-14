@@ -60,21 +60,20 @@ export const Myaccount = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" height="100vh" sx={{ background: "linear-gradient(135deg,#0d0d0d,#1a1a1a)" }}>
+    <Box display="flex" justifyContent="center" alignItems="center" height="100vh" sx={{ background: "linear-gradient(135deg,#f8f9fa,#ffffff)" }}>
       <Card sx={{ 
         width: 380, 
         p: 2, 
         borderRadius: 3, 
-        backgroundColor: "#111", 
-        color: "#fff", 
-        boxShadow: "0 0 25px rgba(255,46,46,0.3)" 
+        style: { backgroundColor: "#f8f9fa", color: "#333" }, 
+        boxShadow: "0 0 25px rgba(0,102,204,0.3)" 
       }}>
         <CardContent>
           <Box display="flex" justifyContent="center" mb={1}>
-            <CheckroomIcon sx={{ fontSize: 40, color: "#ff2e2e" }} />
+            <CheckroomIcon sx={{ fontSize: 40, color: "#0066cc" }} />
           </Box>
-          <Typography variant="h5" textAlign="center" fontWeight="bold">Gorras Store</Typography>
-          <Typography variant="body2" textAlign="center" mb={3} color="gray">Inicia sesión para comprar</Typography>
+          <Typography variant="h5" textAlign="center" fontWeight="bold">Control de Gastos</Typography>
+          <Typography variant="body2" textAlign="center" mb={3} color="gray">Inicia sesión para gestionar tus gastos</Typography>
 
           <Box component="form" onSubmit={handleSubmit}>
             <TextField
@@ -83,17 +82,17 @@ export const Myaccount = () => {
               InputProps={{ 
                 startAdornment: (
                   <InputAdornment position="start">
-                    <EmailIcon sx={{ color: "#ff2e2e" }} />
+                    <EmailIcon sx={{ color: "#0066cc" }} />
                   </InputAdornment>
                 ) 
               }}
               sx={{ 
-                input: { color: "#fff" }, 
-                label: { color: "#aaa" },
+                input: { color: "#333" }, 
+                label: { color: "#666" },
                 "& .MuiOutlinedInput-root": {
-                  "& fieldset": { borderColor: "#333" },
-                  "&:hover fieldset": { borderColor: "#ff2e2e" },
-                  "&.Mui-focused fieldset": { borderColor: "#ff2e2e" }
+                  "& fieldset": { borderColor: "#ccc" },
+                  "&:hover fieldset": { borderColor: "#0066cc" },
+                  "&.Mui-focused fieldset": { borderColor: "#0066cc" }
                 }
               }}
             />
@@ -103,24 +102,24 @@ export const Myaccount = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockIcon sx={{ color: "#ff2e2e" }} />
+                    <LockIcon sx={{ color: "#0066cc" }} />
                   </InputAdornment>
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} sx={{ color: "#fff" }}>
+                    <IconButton onClick={() => setShowPassword(!showPassword)} sx={{ color: "#333" }}>
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 )
               }}
               sx={{ 
-                input: { color: "#fff" }, 
-                label: { color: "#aaa" },
+                input: { color: "#333" }, 
+                label: { color: "#666" },
                 "& .MuiOutlinedInput-root": {
-                  "& fieldset": { borderColor: "#333" },
-                  "&:hover fieldset": { borderColor: "#ff2e2e" },
-                  "&.Mui-focused fieldset": { borderColor: "#ff2e2e" }
+                  "& fieldset": { borderColor: "#ccc" },
+                  "&:hover fieldset": { borderColor: "#0066cc" },
+                  "&.Mui-focused fieldset": { borderColor: "#0066cc" }
                 }
               }}
             />
@@ -131,10 +130,11 @@ export const Myaccount = () => {
               disabled={!formularioValido} 
               sx={{ 
                 mt: 2, 
-                bgcolor: "#ff2e2e", 
+                color: "#fff", 
+                backgroundColor: "#0066cc", 
                 fontWeight: "bold", 
-                "&:hover": { bgcolor: "#cc0000" },
-                "&.Mui-disabled": { bgcolor: "#551a1a", color: "#888" } 
+                "&:hover": { backgroundColor: "#003399" },
+                "&.Mui-disabled": { backgroundColor: "#cccccc", color: "#666" } 
               }}
             >
               Acceder
@@ -142,11 +142,17 @@ export const Myaccount = () => {
             <Typography textAlign="center" mt={2} fontSize="0.9rem">
               ¿No tienes cuenta?{" "}
               <span 
-                style={{ color: "#ff2e2e", cursor: "pointer", fontWeight: "bold" }} 
+                style={{ color: "#0066cc", cursor: "pointer", fontWeight: "bold" }} 
                 onClick={() => navigate("/Register")}
               >
                 Regístrate
               </span>
+            </Typography>
+            <Typography textAlign="center" mt={1} fontSize="0.8rem" color="#666">
+              Al iniciar sesión, aceptas nuestros{" "}
+              <span style={{ fontWeight: "bold", color: "#0066cc" }}>términos y condiciones</span>
+              {" "} y{" "}
+              <span style={{ fontWeight: "bold", color: "#0066cc" }}>política de privacidad</span>
             </Typography>
           </Box>
         </CardContent>

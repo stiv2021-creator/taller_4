@@ -17,19 +17,19 @@ const ApiRyC = () => {
 
   return (
     <div style={{ 
-    backgroundColor: "#0d0d0d", 
+    backgroundColor: "#f8f9fa", 
     padding: "20px",
     paddingTop: "1px"
     }}>
       
       {/* TÍTULO */}
         <h1 style={{ 
-        color: "#ff2e2e", 
+        color: "#0066cc", 
         textAlign: "center",
         marginTop: "0",
         marginBottom: "30px"
         }}>
-        Rick and Morty API
+        API de Gastos 💰
         </h1>
 
       {/* GRID DE PERSONAJES */}
@@ -40,12 +40,12 @@ const ApiRyC = () => {
               sx={{ 
                 borderRadius: 3, 
                 boxShadow: 5, 
-                backgroundColor: "#1a1a1a",
-                color: "white",
+                backgroundColor: "#ffffff",
+                color: "#333",
                 transition: "0.3s",
                 "&:hover": {
                   transform: "scale(1.05)",
-                  boxShadow: "0 0 15px #ff2e2e"
+                  boxShadow: "0 0 15px #0066cc"
                 }
               }}
             >
@@ -59,10 +59,10 @@ const ApiRyC = () => {
                 }}
               />
               <CardContent>
-                <Typography variant="h6" sx={{ color: "white" }}>
+                <Typography variant="h6" sx={{ color: "#333" }}>
                   {char.name}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "gray" }}>
+                <Typography variant="body2" sx={{ color: "#666" }}>
                   {char.gender}
                 </Typography>
               </CardContent>
@@ -79,14 +79,14 @@ const ApiRyC = () => {
           disabled={!info.prev}
           sx={{ 
             marginRight: 2,
-            backgroundColor: "#ff2e2e",
-            "&:hover": { backgroundColor: "#cc0000" }
+            backgroundColor: "#0066cc",
+            "&:hover": { backgroundColor: "#0056b3" }
           }}
         >
           Anterior
         </Button>
 
-        <span style={{ color: "white" }}>Página {page}</span>
+        <span style={{ color: "#333" }}>Página {page}</span>
 
         <Button
           variant="contained"
@@ -94,8 +94,8 @@ const ApiRyC = () => {
           disabled={!info.next}
           sx={{ 
             marginLeft: 2,
-            backgroundColor: "#ff2e2e",
-            "&:hover": { backgroundColor: "#cc0000" }
+            backgroundColor: "#0066cc",
+            "&:hover": { backgroundColor: "#0056b3" }
           }}
         >
           Siguiente

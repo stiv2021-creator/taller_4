@@ -19,16 +19,18 @@ function App() {
       <div className="d-flex flex-column min-vh-100">
         <Header />
 
-        <Routes>
-          <Route path='/' element={<Content />}></Route>
-          <Route path="/Article" element={<Article />}></Route>
-          <Route path='/Offers' element={<Offers />}></Route>
-          <Route path='/ApiRyc' element={<ApiRyc />}></Route>
-          <Route path='/Myaccount' element={<Myaccount />}></Route>
-          <Route path='/Mybuys' element={<Mybuys />}></Route>
-          <Route path='/Login' element={<Myaccount />}></Route>
-          <Route path='/Register' element={<Register />}></Route>
-        </Routes>
+        <div className="flex-grow-1">
+          <Routes>
+            <Route path='/' element={<Content />}></Route>
+            <Route path="/Article" element={<Article />}></Route>
+            <Route path='/Offers' element={<Offers />}></Route>
+            <Route path='/ApiRyc' element={<ApiRyc />}></Route>
+            <Route path='/Myaccount' element={<Myaccount />}></Route>
+            <Route path='/Mybuys' element={<Mybuys />}></Route>
+            <Route path='/Login' element={<Myaccount />}></Route>
+            <Route path='/Register' element={<Register />}></Route>
+          </Routes>
+        </div>
 
         <Footer />
       </div>

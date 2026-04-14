@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useBuys } from "../../auth/hooks/BuysContext";
 
 const Header = () => {
   const navigate = useNavigate();
 
   // ✅ Estado del usuario
   const [user, setUser] = useState(null);
-
-  // ✅ Obtener compras
-  const { buys } = useBuys();
-  const totalItems = buys.reduce((acc, item) => acc + (item.quantity || 1), 0);
 
   // ✅ Detectar sesión
   useEffect(() => {
@@ -39,16 +34,16 @@ const Header = () => {
     <header>
       <nav
         className="navbar navbar-expand-lg shadow-sm py-3"
-        style={{ backgroundColor: "#0d0d0d" }}
+        style={{ backgroundColor: "#f8f9fa" }}
       >
         <div className="container-fluid px-4">
           {/* LOGO */}
           <NavLink
             to="/"
             className="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2 text-decoration-none"
-            style={{ color: "#ff2e2e" }}
+            style={{ color: "#0066cc" }}
           >
-            🧢 <span>Gorras Store</span>
+            💰 <span>Control de Gastos</span>
           </NavLink>
 
           <button
@@ -63,40 +58,29 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto gap-3 align-items-center">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link text-white">
+                <NavLink to="/" className="nav-link text-dark">
                   Inicio
                 </NavLink>
               </li>
 
               <li className="nav-item">
                 {/* ⚠️ Corregido: '/Article' con A mayúscula */}
-                <NavLink to="/Article" className="nav-link text-white">
-                  Catálogo
+                <NavLink to="/Article" className="nav-link text-dark">
+                  Categorías
                 </NavLink>
               </li>
 
               <li className="nav-item">
                 {/* ⚠️ Corregido: '/Offers' con O mayúscula */}
-                <NavLink to="/Offers" className="nav-link text-white">
-                  Ofertas
+                <NavLink to="/Offers" className="nav-link text-dark">
+                  Estadísticas
                 </NavLink>
               </li>
 
               <li className="nav-item">
                 {/* ⚠️ Corregido: '/ApiRyc' con A mayúscula */}
-                <NavLink to="/ApiRyc" className="nav-link text-white">
+                <NavLink to="/ApiRyc" className="nav-link text-dark">
                   Api
-                </NavLink>
-              </li>
-
-              {/* 🛒 CARRITO */}
-              <li className="nav-item position-relative">
-                {/* ⚠️ Corregido: '/Mybuys' con M mayúscula */}
-                <NavLink to="/Mybuys" className="nav-link text-white">
-                  🛒
-                  {totalItems > 0 && (
-                    <span className="cart-badge">{totalItems}</span>
-                  )}
                 </NavLink>
               </li>
 
@@ -104,7 +88,7 @@ const Header = () => {
               {!user && (
                 <li className="nav-item">
                   {/* ⚠️ Corregido: '/Myaccount' con M mayúscula */}
-                  <NavLink to="/Myaccount" className="nav-link text-white">
+                  <NavLink to="/Myaccount" className="nav-link text-dark">
                     Cuenta
                   </NavLink>
                 </li>
@@ -114,7 +98,7 @@ const Header = () => {
               {user && (
                 <>
                   <li className="nav-item">
-                    <span className="nav-link text-white">
+                    <span className="nav-link text-dark">
                       👤 {user.email}
                     </span>
                   </li>
@@ -124,7 +108,7 @@ const Header = () => {
                       onClick={handleLogout}
                       className="btn btn-sm"
                       style={{
-                        backgroundColor: "#ff2e2e",
+                        backgroundColor: "#0066cc",
                         color: "#fff",
                         border: "none",
                       }}
@@ -135,6 +119,45 @@ const Header = () => {
                 </>
               )}
             </ul>
+          
+          {/* ENLACE A GITHUB */}
+          <div className="ms-3">
+            <a 
+              href="https://github.com/stiv2021-creator/taller_4.git" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn btn-sm"
+              style={{
+                backgroundColor: "#0066cc",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                padding: "8px 16px",
+                textDecoration: "none",
+                transition: "all 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#0056b3";
+                e.target.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "#0066cc";
+                e.target.style.transform = "translateY(0)";
+              }}
+            >
+              <svg 
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="currentColor" 
+                style={{ marginRight: "8px", verticalAlign: "middle" }}
+              >
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.373 12 12 12 5.373 12 12-5.373 12-12zm0 18.5c-1.976 0-3.71.524-3.71-3.71 0-2.057.842-3.71 1.842 0 2.057.842 3.71 3.71 1.842 0 3.71-.842 3.71-3.71zm-6-.218c.351-.21.683-.827.683-1.431 0-1.104-.472-1.832-1.04-2.03-.379-.699-1.12-1.17-1.832-1.17-.612.491-1.382-.877-1.832-.877-.53 0-1.006.292-1.433.877-1.433.877 0-1.006-.292-1.433-.877-1.433.877z"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+          
           </div>
         </div>
       </nav>
@@ -142,18 +165,7 @@ const Header = () => {
       <style>
         {`
           .nav-link:hover {
-            color: #ff2e2e !important;
-          }
-
-          .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background: #ff2e2e;
-            color: white;
-            font-size: 10px;
-            padding: 3px 6px;
-            border-radius: 50%;
+            color: #0066cc !important;
           }
         `}
       </style>

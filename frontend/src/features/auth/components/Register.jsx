@@ -61,7 +61,7 @@ export const Register = () => {
       const data = await res.json();
 
       if (res.ok) {
-        alert(data.mensaje || "¡Registro exitoso! Ya puedes iniciar sesión.");
+        alert("Registro exitoso 🎉"); 
         navigate("/login");
       } else {
         alert(data.mensaje || "Error al registrar");
@@ -75,17 +75,17 @@ export const Register = () => {
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" height="100vh"
-      sx={{ background: "linear-gradient(135deg,#0d0d0d,#1a1a1a)" }}
+      sx={{ background: "linear-gradient(135deg,#f8f9fa,#ffffff)" }}
     >
       <Card sx={{
         width: 380, p: 2, borderRadius: 3,
-        backgroundColor: "#111", color: "#fff",
-        boxShadow: "0 0 25px rgba(255,46,46,0.3)" // Mantenemos tu estilo exacto
+        backgroundColor: "#ffffff", color: "#333",
+        boxShadow: "0 0 25px rgba(0,102,204,0.3)" // Tema azul/blanco
       }}>
         <CardContent>
 
           <Box display="flex" justifyContent="center" mb={1}>
-            <CheckroomIcon sx={{ fontSize: 40, color: "#ff2e2e" }} />
+            <CheckroomIcon sx={{ fontSize: 40, color: "#0066cc" }} />
           </Box>
 
           <Typography variant="h5" textAlign="center" fontWeight="bold">
@@ -101,16 +101,16 @@ export const Register = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <PersonIcon sx={{ color: "#ff2e2e" }} />
+                    <PersonIcon sx={{ color: "#0066cc" }} />
                   </InputAdornment>
                 )
               }}
               sx={{ 
-                input: { color: "#fff" }, 
-                label: { color: "#aaa" },
+                input: { color: "#333" }, 
+                label: { color: "#666" },
                 "& .MuiOutlinedInput-root": {
-                  "& fieldset": { borderColor: "#333" },
-                  "&:hover fieldset": { borderColor: "#ff2e2e" },
+                  "& fieldset": { borderColor: "#ccc" },
+                  "&:hover fieldset": { borderColor: "#0066cc" },
                 }
               }}
             />
@@ -124,16 +124,16 @@ export const Register = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <EmailIcon sx={{ color: "#ff2e2e" }} />
+                    <EmailIcon sx={{ color: "#0066cc" }} />
                   </InputAdornment>
                 )
               }}
               sx={{ 
-                input: { color: "#fff" }, 
-                label: { color: "#aaa" },
+                input: { color: "#333" }, 
+                label: { color: "#666" },
                 "& .MuiOutlinedInput-root": {
-                  "& fieldset": { borderColor: "#333" },
-                  "&:hover fieldset": { borderColor: "#ff2e2e" },
+                  "& fieldset": { borderColor: "#ccc" },
+                  "&:hover fieldset": { borderColor: "#0066cc" },
                 }
               }}
             />
@@ -145,26 +145,28 @@ export const Register = () => {
               margin="normal"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              helperText="Mínimo 8 caracteres, 1 mayúscula y 1 carácter especial (*, !, @, #, $, %, ^, &, *)"
+              error={password !== "" && !validarPassword(password)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockIcon sx={{ color: "#ff2e2e" }} />
+                    <LockIcon sx={{ color: "#0066cc" }} />
                   </InputAdornment>
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} sx={{ color: "#fff" }}>
+                    <IconButton onClick={() => setShowPassword(!showPassword)} sx={{ color: "#333" }}>
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 )
               }}
               sx={{ 
-                input: { color: "#fff" }, 
-                label: { color: "#aaa" },
+                input: { color: "#333" }, 
+                label: { color: "#666" },
                 "& .MuiOutlinedInput-root": {
-                  "& fieldset": { borderColor: "#333" },
-                  "&:hover fieldset": { borderColor: "#ff2e2e" },
+                  "& fieldset": { borderColor: "#ccc" },
+                  "&:hover fieldset": { borderColor: "#0066cc" },
                 }
               }}
             />
@@ -173,9 +175,9 @@ export const Register = () => {
               disabled={!formularioValido}
               sx={{ 
                 mt: 2, 
-                bgcolor: "#ff2e2e", 
+                bgcolor: "#0066cc", 
                 fontWeight: "bold",
-                "&:hover": { bgcolor: "#cc0000" } 
+                "&:hover": { bgcolor: "#0056b3" } 
               }}
             >
               Registrarse
@@ -184,11 +186,17 @@ export const Register = () => {
             <Typography textAlign="center" mt={2} fontSize="0.9rem">
               ¿Ya tienes cuenta?{" "}
               <span
-                style={{ color: "#ff2e2e", cursor: "pointer" }}
+                style={{ color: "#0066cc", cursor: "pointer" }}
                 onClick={() => navigate("/login")}
               >
                 Inicia sesión
               </span>
+            </Typography>
+            <Typography textAlign="center" mt={1} fontSize="0.8rem" color="#666">
+              Al registrarte, aceptas nuestros{" "}
+              <span style={{ fontWeight: "bold", color: "#0066cc" }}>términos y condiciones</span>
+              {" "} y{" "}
+              <span style={{ fontWeight: "bold", color: "#0066cc" }}>política de privacidad</span>
             </Typography>
 
           </Box>

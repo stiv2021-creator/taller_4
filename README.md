@@ -1,20 +1,20 @@
-# Gorras Store - E-commerce de Gorras
+# Control de Gastos - App de Finanzas Personales
 
 ## Nombre
-**Gorras Store** - Una aplicación web de e-commerce especializada en la venta de gorras y accesorios de moda urbana.
+**Control de Gastos** - Una aplicación web de finanzas personales especializada en el tracking y gestión de gastos diarios.
 
 ## Descripción y Características Principales
 
-Gorras Store es una plataforma de comercio electrónico moderna desarrollada con React y Node.js que ofrece una experiencia de compra intuitiva y atractiva para los amantes de las gorras. La aplicación cuenta con:
+Control de Gastos es una plataforma financiera personal moderna desarrollada con React y Node.js que ofrece una experiencia intuitiva y eficiente para administrar tus finanzas. La aplicación cuenta con:
 
-- **Catálogo de productos**: Visualización de diferentes tipos de gorras (Snapback, Trucker, Dad Hat)
+- **Categorización de gastos**: Organización por vivienda, alimentación, transporte y más
 - **Sistema de autenticación**: Registro y login de usuarios con JWT
-- **Gestión de compras**: Carrito de compras funcional con contador de productos
+- **Gestión de transacciones**: Registro y seguimiento de gastos con contador
 - **Navegación intuitiva**: Sistema de rutas con React Router
 - **Diseño responsivo**: Interfaz adaptable a diferentes dispositivos
 - **Tema oscuro**: Diseño moderno con fondo negro y acentos en rojo
 - **Integración con API**: Conexión con backend para gestión de datos
-- **Despliegue automatizado**: Configuración para GitHub Pages
+- **Estadísticas**: Análisis visual de patrones de gasto
 
 ## Instalación
 
@@ -138,17 +138,17 @@ heatsshop/
 ![Página Principal](assets/img/screenshot-home.png)
 
 La interfaz presenta un diseño moderno con:
-- **Header**: Navegación con logo "Gorras Store" y menú de navegación
-- **Hero Section**: Título destacado con el texto "Mejores opciones de gorras"
-- **Catálogo de Productos**: Cards en grid mostrando diferentes tipos de gorras
-- **Footer**: Información de la tienda, redes sociales y enlaces importantes
+- **Header**: Navegación con logo "Control de Gastos" y menú de navegación
+- **Hero Section**: Título destacado con el texto "Control de Gastos Diarios"
+- **Categorías de Gastos**: Cards en grid mostrando vivienda, alimentación y transporte
+- **Footer**: Información de la aplicación, redes sociales y enlaces importantes
 
 ### Características de UI
 - Tema oscuro con fondo negro (#000000)
 - Acentos de color rojo (#ff2e2e) para branding
 - Diseño responsivo con Bootstrap
-- Animaciones hover en las cards de productos
-- Contador de productos en el ícono del carrito
+- Animaciones hover en las cards de categorías
+- Contador de transacciones en el ícono de estadísticas
 
 ## Datos Importantes del Autor
 
@@ -164,7 +164,7 @@ Desarrollador Web Full Stack especializado en React y Node.js
 ### Información del Proyecto
 - **Versión**: 1.0.0
 - **Licencia**: ISC
-- **Fecha de Creación**: 2026
+- **Fecha de Creación**: 2026|  
 - **Estado**: Activo en desarrollo
 
 ### Tecnologías Dominadas
@@ -174,4 +174,4 @@ Desarrollador Web Full Stack especializado en React y Node.js
 
 ---
 
-**Nota**: Este proyecto fue desarrollado como parte del Taller 4 de programación web, demostrando habilidades en el desarrollo de aplicaciones full stack modernas con arquitectura cliente-servidor.
+**Nota**: Este proyecto fue desarrollado como parte del Taller 4 de programación web, demostrando habilidades en el desarrollo de aplicaciones full stack modernas con arquitectura cliente-servidor para gestión financiera personal.
